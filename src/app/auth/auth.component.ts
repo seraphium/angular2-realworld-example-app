@@ -3,7 +3,9 @@
  */
 import { Component, OnInit }from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validator, Validators} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Errors} from "../shared/models/errors.model";
+import {UserService} from "../shared/services/user.service";
 
 @Component({
   selector: 'auth-page',
@@ -12,11 +14,14 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthComponent implements OnInit {
   authType: string = '';
   title: string = '';
+  errors: Errors = new Errors();
   isSubmitting: boolean = false;
   authForm: FormGroup;
   constructor(
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService
   ){
     this.authForm = this.fb.group({
       'email': ['', Validators.required],
@@ -36,8 +41,16 @@ export class AuthComponent implements OnInit {
 
   submitForm(){
     this.isSubmitting = true;
+    this.errors = new Errors();
     let credential = this.authForm.value;
-    console.log(credential);
+    this.userService.attemptAuth(this.authType,  credential)
+      .subscribe(
+        data => this.router.navigateByUrl('/'),
+        err => {
+          this.errors = err;
+          this.isSubmitting = false;
+        }
+      )
 
   }
 
