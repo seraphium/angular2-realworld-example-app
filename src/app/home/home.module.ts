@@ -19,7 +19,7 @@ const homeRouting: ModuleWithProviders = RouterModule.forChild([
     SharedModule
   ],
   declarations: [
-    HomeComponent
+    HomeComponent,
   ],
   providers:[]
 })

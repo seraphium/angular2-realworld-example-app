@@ -1,7 +1,7 @@
 <div class="navbar navbar-light">
   <div class="container">
     <a class="navbar-brand" routerLink="/">conduit</a>
-    <ul class="nav navbar-nav pull-xs-right">
+    <ul class="nav navbar-nav pull-xs-right" *showAuthed="false">
       <li class="nav-item">
         <a class="nav-link"  routerLink="/">Home</a>
       </li>
@@ -10,6 +10,26 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/register" routerLinkActive="Active">Sign up</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav pull-xs-right" *showAuthed="true">
+      <li class="nav-item">
+        <a class="nav-link"  routerLink="/" routerLinkActive="Active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="ion-compose"></i>&nbsp;New Article
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="ion-gear-a"></i>&nbsp;Settings
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          My Profile
+        </a>
       </li>
     </ul>
   </div>
