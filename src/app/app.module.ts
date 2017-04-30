@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import {ApiService} from "./shared/services/api.service";
 import {UserService} from "./shared/services/user.service";
 import {JwtService} from "./shared/services/jwt.service";
+import {NoAuthGuard} from "./shared/services/no-auth-guard.service";
+import {AuthGuard} from "./shared/services/auth-guard.service";
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true});
 
@@ -28,6 +30,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true}
     ApiService,
     UserService,
     JwtService,
+    NoAuthGuard,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
