@@ -10,6 +10,7 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {ApiService} from "./api.service";
 import {User} from "../models";
+import {JwtService} from "./jwt.service";
 
 
 @Injectable()
@@ -22,10 +23,12 @@ export class UserService{
 
   constructor(
     private http: Http,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private jwtService: JwtService,
   ) {}
 
   setAuth(user: User){
+    this.jwtService.saveToken(user.token);
     this.currentUserSubject.next(user);
     this.isAuthenticatedSubject.next(true);
   }
@@ -41,5 +44,27 @@ export class UserService{
 
   getCurrentUser(): User{
     return this.currentUserSubject.value;
+  }
+
+  populate() {
+    if (this.jwtService.getToken()) {
+      this.apiService.get('/user')
+        .subscribe(
+          data => {
+            this.setAuth(data.user);
+          } ,
+          err => this.purgeAuth()
+
+        )
+    } else {
+      this.purgeAuth();
+    }
+
+  }
+
+  purgeAuth() {
+    this.jwtService.destroyToken();
+    this.currentUserSubject.next(new User());
+    this.isAuthenticatedSubject.next(false);
   }
 }
