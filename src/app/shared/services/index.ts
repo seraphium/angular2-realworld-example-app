@@ -8,5 +8,6 @@ export * from './jwt.service';
 export * from './no-auth-guard.service';
 export * from './auth-guard.service';
 export * from './profiles.service';
+export * from './articles.service';
 
 

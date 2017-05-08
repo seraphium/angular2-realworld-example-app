@@ -13,6 +13,8 @@ import {AuthGuard} from "./shared/services/auth-guard.service";
 import {SettingsModule} from "./settings/settings.module";
 import {ProfileModule} from "./profile/profile.module";
 import {ProfilesService} from "./shared/services/profiles.service";
+import {ArticlesService} from "./shared/services/articles.service";
+import {EditorModule} from "./editor/editor.module";
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true});
 
@@ -29,7 +31,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true}
     HomeModule,
     rootRouting,
     SettingsModule,
-    ProfileModule
+    ProfileModule,
+    EditorModule,
   ],
   providers: [
     ApiService,
@@ -38,6 +41,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true}
     NoAuthGuard,
     AuthGuard,
     ProfilesService,
+    ArticlesService,
   ],
   bootstrap: [AppComponent]
 })
