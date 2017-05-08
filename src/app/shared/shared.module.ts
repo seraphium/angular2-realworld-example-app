@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ListErrorsComponent } from "./list-errors.component";
 import { ShowAuthedDirective } from './show-authed.directive';
+import {FollowButtonComponent} from "./buttons";
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ShowAuthedDirective } from './show-authed.directive';
   declarations: [
     ListErrorsComponent,
     ShowAuthedDirective,
+    FollowButtonComponent,
   ],
   exports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { ShowAuthedDirective } from './show-authed.directive';
     RouterModule,
     ListErrorsComponent,
     ShowAuthedDirective,
+    FollowButtonComponent,
   ],
 
 })
