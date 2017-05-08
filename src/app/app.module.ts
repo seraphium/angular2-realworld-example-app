@@ -11,6 +11,8 @@ import {JwtService} from "./shared/services/jwt.service";
 import {NoAuthGuard} from "./shared/services/no-auth-guard.service";
 import {AuthGuard} from "./shared/services/auth-guard.service";
 import {SettingsModule} from "./settings/settings.module";
+import {ProfileModule} from "./profile/profile.module";
+import {ProfilesService} from "./shared/services/profiles.service";
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true});
 
@@ -26,7 +28,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true}
     AuthModule,
     HomeModule,
     rootRouting,
-    SettingsModule
+    SettingsModule,
+    ProfileModule
   ],
   providers: [
     ApiService,
@@ -34,6 +37,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true}
     JwtService,
     NoAuthGuard,
     AuthGuard,
+    ProfilesService,
   ],
   bootstrap: [AppComponent]
 })
