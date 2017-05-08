@@ -36,15 +36,16 @@ export class ApiService{
     let postPath = `${environment.api_url}${path}`;
     let postBody = JSON.stringify(body);
     let postHeader = this.setHeaders();
+    console.log(`post url: ${postPath}`);
+    console.log(`post header: ${JSON.stringify(postHeader.toJSON())}`);
+    console.log(`post body: ${postBody}`);
     return this.http.post(postPath,
         postBody, {headers: postHeader})
         .catch(this.formatError)
         .map((res: Response) => {
 
           let resJson = res.json();
-          console.log(`post url: ${postPath}`);
-          console.log(`post header: ${JSON.stringify(postHeader.toJSON())}`);
-          console.log(`post body: ${postBody}`);
+
           console.log(`post res: ${JSON.stringify(resJson)}`);
 
           return resJson;
@@ -54,15 +55,33 @@ export class ApiService{
   get(path: string, params: URLSearchParams = new URLSearchParams()) : Observable<any> {
       let getPath = `${environment.api_url}${path}`;
       let getHeader = this.setHeaders();
+      console.log(`get url: ${getPath}`);
+      console.log(`get header${JSON.stringify(getHeader.toJSON())}`);
       return this.http.get(getPath, {headers: getHeader, search: params})
         .catch(this.formatError)
         .map((res: Response) => {
           let jsonRes = res.json();
-          console.log(`get url: ${getPath}`);
-          console.log(`get header${JSON.stringify(getHeader.toJSON())}`);
+
           console.log(`get res:${JSON.stringify(jsonRes)}`);
 
           return jsonRes;
         });
+  }
+
+  put(path: string, body: Object={}): Observable<any> {
+      let putPath = `${environment.api_url}${path}`;
+      let putHeader = this.setHeaders();
+      let putBody =  JSON.stringify(body);
+      console.log(`put url: ${putPath}`);
+      console.log(`put header${JSON.stringify(putHeader.toJSON())}`);
+      console.log(`put body: ${putBody}`);
+
+      return this.http.put(putPath, putBody, {headers:   putHeader })
+        .catch(this.formatError)
+        .map((res: Response) => {
+
+          let jsonRes = res.json();
+          console.log(`put res:${JSON.stringify(jsonRes)}`);
+        })
   }
 }
