@@ -16,6 +16,7 @@ import {ProfilesService} from "./shared/services/profiles.service";
 import {ArticlesService} from "./shared/services/articles.service";
 import {EditorModule} from "./editor/editor.module";
 import {ArticleModule} from "./article/article.module";
+import {CommentsService} from "./shared/services/comments.service";
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true});
 
@@ -45,6 +46,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true}
     AuthGuard,
     ProfilesService,
     ArticlesService,
+    CommentsService,
   ],
   bootstrap: [AppComponent]
 })
