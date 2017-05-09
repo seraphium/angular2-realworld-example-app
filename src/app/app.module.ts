@@ -15,15 +15,12 @@ import {ProfileModule} from "./profile/profile.module";
 import {ProfilesService} from "./shared/services/profiles.service";
 import {ArticlesService} from "./shared/services/articles.service";
 import {EditorModule} from "./editor/editor.module";
+import {ArticleModule} from "./article/article.module";
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true});
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent
-  ],
+
   imports: [
     BrowserModule,
     SharedModule,
@@ -33,6 +30,12 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], {useHash:true}
     SettingsModule,
     ProfileModule,
     EditorModule,
+    ArticleModule
+  ],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [
     ApiService,

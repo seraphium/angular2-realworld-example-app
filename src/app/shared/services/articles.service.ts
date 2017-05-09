@@ -20,7 +20,7 @@ export class ArticlesService  {
   save(article): Observable<Article>  {
       //if we're updating an existing article
       if (article.slug) {
-        return this.apiService.put('/articles'+ article.slug, {article: article})
+        return this.apiService.put('/articles/'+ article.slug, {article: article})
           .map(data => data.article);
       } else {
         return this.apiService.post('/articles/', {article: article})
@@ -28,5 +28,15 @@ export class ArticlesService  {
       }
   }
 
+  destroy(slug) {
+      return this.apiService.delete('/articles/' + slug);
+  }
 
+  favorite(slug): Observable<Article> {
+      return this.apiService.post('/articles/' + slug + '/favorite');
+  }
+
+  unfavorite(slug): Observable<Article> {
+    return this.apiService.delete('/articles/' + slug + '/favorite');
+  }
 }
