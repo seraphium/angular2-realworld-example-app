@@ -6,11 +6,27 @@ import {Injectable} from "@angular/core";
 import {ApiService} from "./api.service";
 import {Observable} from "rxjs/Observable";
 import {Article} from "../models/article.model";
+import {ArticleListConfig} from "../models/article-list-config.model";
+import {URLSearchParams} from '@angular/http';
+
 @Injectable()
 export class ArticlesService  {
   constructor(
     private apiService: ApiService
   ){}
+
+  query(config: ArticleListConfig): Observable<{articles: Article[], articlesCount: number}>  {
+      let params: URLSearchParams =  new URLSearchParams();
+      Object.keys(config.filters).forEach(
+        (key) => {
+          params.set(key, config.filters[key]);
+        }
+      );
+
+      return this.apiService.get('/articles' +  ((config.type === 'feed')? '/feed':''), params)
+      .map(data => data);
+
+  }
 
   get(slug): Observable<Article> {
       return this.apiService.get('/articles/' + slug)

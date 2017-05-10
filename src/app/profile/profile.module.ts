@@ -3,6 +3,8 @@ import {RouterModule} from "@angular/router";
 import {ProfileComponent} from "./profile.component";
 import {ProfileResolver} from "./profile-resolver.service";
 import {SharedModule} from "../shared/shared.module";
+import {ProfileArticlesComponent} from "./profile-articles.component";
+import {ProfileFavoritesComponent} from "./profile-favorites.component";
 /**
  * Created by zezhang on 2017/5/8.
  */
@@ -13,7 +15,17 @@ const profileRouting: ModuleWithProviders = RouterModule.forChild([
     component: ProfileComponent,
     resolve: {
       profile: ProfileResolver
-    }
+    },
+    children: [
+      {
+        path: '',
+        component: ProfileArticlesComponent
+      },
+      {
+        path: 'favorites',
+        component: ProfileFavoritesComponent
+      }
+    ]
   }
 ]);
 
@@ -23,7 +35,9 @@ const profileRouting: ModuleWithProviders = RouterModule.forChild([
     SharedModule
   ],
   declarations: [
-    ProfileComponent
+    ProfileArticlesComponent,
+    ProfileComponent,
+    ProfileFavoritesComponent,
   ],
   providers: [
     ProfileResolver
