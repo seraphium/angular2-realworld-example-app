@@ -10,7 +10,7 @@
   No article yet.
 </div>
 
-<nav [hidden]="loading ||  totalPages <= 1">
+<nav [hidden]="loading ||  totalPages.length <= 1">
   <ul class="pagination">
     <li class="page-item"
         [ngClass]="{'active': pageNumber === currentPage}"

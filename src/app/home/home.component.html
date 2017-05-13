@@ -48,7 +48,7 @@
           Loading tags...
         </div>
 
-        <div [hidden]="!tagsLoaded || tags.length">
+        <div [hidden]="!tagsLoaded || (tags.length > 0)">
           No tags yet...
         </div>
       </div>
