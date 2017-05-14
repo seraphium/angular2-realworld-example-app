@@ -31,3 +31,6 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
+#Amazon S3 credential
+deploy.config.json
